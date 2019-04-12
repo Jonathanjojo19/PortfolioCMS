@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'portfolio',
-    'cms'
+    'cms',
+    'information'
 ]
 
 MIDDLEWARE = [
@@ -131,7 +132,7 @@ STATICFILES_DIRS = (
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 
-STATICFILES_STORAGE = 'Crowd_Funding.storage.WhiteNoiseStaticFilesStorage'
+STATICFILES_STORAGE = 'portfolio_cms.storage.WhiteNoiseStaticFilesStorage'
 
 # Media files
 

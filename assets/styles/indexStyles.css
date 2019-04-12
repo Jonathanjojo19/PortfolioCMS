@@ -1,0 +1,54 @@
+
+.line-wrapped {
+	overflow: hidden;
+	text-align: center;
+	pointer-events: visible;
+}
+
+.line-wrapped:hover:before,
+.line-wrapped:hover:after {
+	transform: scale(1, 1);
+	transition-duration: 1s;	
+}
+
+.line-wrapped:before,
+.line-wrapped:after {
+	background-color: #3E4456;
+	content: "";
+	display: inline-block;
+	height: 1px;
+	vertical-align: middle;
+	width: 40%;
+	transform: scale(0.25, 1);
+}
+
+.line-wrapped:before {
+	right: 0.5em;
+	margin-left: -50%;
+	transform-origin: 100% 50%;
+}
+
+.line-wrapped:after {
+	left: 0.5em;
+	margin-right: -50%;
+	transform-origin: 0% 50%;
+}
+
+.line-wrapped:hover > .line-wrapped:after {
+	height:2px;
+}
+
+.logo {
+    width:46px; 
+    margin-top:5px; 
+}
+
+#description {
+    margin-top: 5vh;
+    margin-bottom: 10vh;
+    text-align: justify;
+}
+
+#contact-links {
+    margin-bottom: 5vh;
+}
