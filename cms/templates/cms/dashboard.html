@@ -57,11 +57,11 @@
                                 {% csrf_token %}
                                 {{ form }}
                                 <div class="d-flex flex-row-reverse">
-                                    <button id="submit-button" class="btn mode draw red-bg commit" onclick="deleteProject({{ form.instance.id }})">
-                                        <span class="light-grey-text">Delete</span>
-                                    </button>
                                     <button id="submit-button" class="btn mode draw blue-bg commit" onclick="updateProject({{ form.instance.id }})">
                                         <span class="light-grey-text">Save</span>
+                                    </button>
+                                    <button id="submit-button" class="btn mode draw red-bg commit" onclick="deleteProject({{ form.instance.id }})">
+                                        <span class="light-grey-text">Delete</span>
                                     </button>
                                 </div>
                             </form>
