@@ -10,7 +10,6 @@ class PersonalInfo(models.Model):
     git = models.URLField(max_length=100)
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
     phone_number = models.CharField(validators=[phone_regex], max_length=17, blank=True)
-    logo = models.ImageField(blank=True, null=True)
     title = models.CharField(max_length=20)
 
     class Meta:
@@ -34,3 +33,17 @@ class Project(models.Model):
     
     def __str__(self):
         return "[PROJECT] {}".format(self.name) 
+
+class Logo(models.Model):
+    logo = models.ImageField(blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "Logos"
+
+    def __str__(self):
+        return "[LOGO] {}".format(self.logo)
+
+    def save(self, *args, **kwargs):
+        if Logo.objects.exists() and not self.pk:
+            raise ValidationError('There can be only one Logo instance')
+        return super(Logo, self).save(*args, **kwargs)

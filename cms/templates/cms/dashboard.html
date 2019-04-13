@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ info.title }} Dashboard</title>
-    <link rel="shortcut icon" href="{{ info.logo.url }}">
+    <link rel="shortcut icon" href="{{ logo.logo.url }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'styles/globalStyles.css' %}" >
     <link rel="stylesheet" href="{% static 'styles/dashboardStyles.css' %}" >
@@ -16,6 +16,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script type="text/javascript" src="{% static 'scripts/updateInfo.js' %}"></script>
+    <script type="text/javascript" src="{% static 'scripts/updateLogo.js' %}"></script>
 </head>
 <body>
     <div class="container-large full-height d-flex light-bg light-grey-text">
@@ -34,7 +35,7 @@
                 <h3>Personal Information</h3>
                 <form class="site-form" action="" method="PUT" id="info-form" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {{ form }}
+                    {{ info_form }}
                     <div class="float-right">
                         <button id="submit-button" class="btn mode draw blue-bg" onclick="updateInfo()">
                             <span class="light-grey-text">Save</span>
@@ -42,13 +43,25 @@
                     </div>
                 </form>
             </div>
+            <!-- <div>
+                <h3>Site Logo</h3>
+                <form class="site-form" action="" method="POST" id="logo-form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ logo_form }}
+                    <div class="float-right">
+                        <button id="submit-button" class="btn mode draw blue-bg" onclick="updateLogo()">
+                            <span class="light-grey-text">Save</span>
+                        </button>
+                    </div>
+                </form>
+            </div> -->
         </div>
     </div>
     <div class="modal fade" id="response-modal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Update Info</h4>
+                    <h4 class="modal-title">Update Status</h4>
                 </div>
                 <div class="modal-body">
                     <p id="update-status"></p>

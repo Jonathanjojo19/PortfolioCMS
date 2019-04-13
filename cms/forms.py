@@ -1,14 +1,14 @@
 from django import forms
 from information.models import (
     PersonalInfo,
-    Project
+    Project,
+    Logo
 )
 
 class PersonalInfoForm(forms.ModelForm):
     class Meta:
         model = PersonalInfo 
         fields = "__all__"
-        exclude = ['logo']
         labels = {
             "name" : "Name",
             "description" : "Description",
@@ -68,6 +68,24 @@ class PersonalInfoForm(forms.ModelForm):
                     "required" : True,
                     "placeholder" : "Your Site Name"
                 }
+            )
+        }
+
+class LogoForm(forms.ModelForm):
+    class Meta:
+        model = Logo
+        fields = ['logo']
+    
+        labels = {
+            "logo" : "Logo"
+        }
+
+        widgets = {
+            "logo" : forms.FileInput(
+                attrs = {
+                    "class" : "form-control",
+                    "required" : True,
+                } 
             )
         }
 
