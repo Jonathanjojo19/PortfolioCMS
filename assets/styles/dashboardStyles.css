@@ -6,26 +6,63 @@ body {
 	background-color: #000011;
 }
 
+/* Form */
+
 .form-control {
     display: inline-block;
     padding: 10px;
     height: auto;
 }
 
+label {
+    margin: auto;
+    margin-top: 10px;
+    font-size: 1em;
+}
+
+.commit {
+    margin-bottom: 0;
+    margin-left: 5px;
+}
+
+/* Addition */
+
 #dahsboard-head {
     margin-bottom: 100px;
 }
 
-label {
-    margin: auto;
-    margin-top: 10px;
-}
-
 .mode {
     position: relative;
-    margin: 0;
 }
 
-.save {
-    margin-bottom: 0;
+@media (max-width: 750px) {
+    
+    h1 { font-size: 2em; }
+
+	h2 { font-size: 1.5em; }
+
+	h3 { font-size: 1.2em; }
+
+	h4 { font-size: 1.1em; }
+
+	h5 { font-size: 1em; }
+
+    h6 { font-size: 0.8em; }
+
+    label {
+        font-size: 0.8em;
+    }
+    
+    .mode {
+        position: relative;
+        margin: 0 auto;
+        padding: 5px 10px;
+    }
+
+    .commit {
+        margin: 0;
+        margin-left: 5px;
+        margin-top: 3px;
+    }
+    
 }

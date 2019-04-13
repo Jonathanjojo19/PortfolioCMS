@@ -74,6 +74,14 @@ body::-webkit-scrollbar {
 
 .mode {
 	position: fixed;
-	bottom: 2em;
-	left: 4em;
+	bottom: 5vh;
+	left: 6vw;
+}
+
+@media (max-width: 750px) {
+	.mode {
+		position: fixed;
+		bottom: 3vw;
+		left: 5vw;
+	}
 }

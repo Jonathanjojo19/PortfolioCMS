@@ -25,7 +25,7 @@
         <div class="dark-blue-text w-100">
             <div id="information" class="d-flex flex-row justify-content-between">
                 <div>
-                    <h2>Dashboard</h2>
+                    <h1>Dashboard</h1>
                 </div>
                 <div>
                     <div class="btn-lg mode draw blue-bg">
@@ -34,30 +34,33 @@
                 </div>
             </div>
             <div>
-                <h3>Personal Information</h3>
+                <h2 class="medium-blue-text section-title">Personal Information</h2>
                 <form class="site-form" action="" method="PUT" id="info-form">
                     {% csrf_token %}
                     {{ info_form }}
-                    <div class="float-right">
-                        <button id="submit-button" class="btn mode draw blue-bg save" onclick="update_info()">
+                    <div class="d-flex flex-row-reverse">
+                        <button id="submit-button" class="btn mode draw blue-bg commit" onclick="update_info()">
                             <span class="light-grey-text">Save</span>
                         </button>
                     </div>
                 </form>
             </div>
             <div id="projects">
-                <h3>Projects</h3>
+                <h2 class="medium-blue-text section-title">Projects</h2>
                 {% for form in project_form %}
+                    {% if not forloop.first %}
+                        <div class="spacer"></div>
+                    {% endif %}
                     {% if not forloop.last %}
                         <div id="project-{{ form.instance.id }}">
                             <form class="site-form" action="" method="PUT" id="project-form-{{ form.instance.id }}">
                                 {% csrf_token %}
                                 {{ form }}
-                                <div class="float-right">
-                                    <button id="submit-button" class="btn mode draw red-bg save" onclick="deleteProject({{ form.instance.id }})">
+                                <div class="d-flex flex-row-reverse">
+                                    <button id="submit-button" class="btn mode draw red-bg commit" onclick="deleteProject({{ form.instance.id }})">
                                         <span class="light-grey-text">Delete</span>
                                     </button>
-                                    <button id="submit-button" class="btn mode draw blue-bg save" onclick="updateProject({{ form.instance.id }})">
+                                    <button id="submit-button" class="btn mode draw blue-bg commit" onclick="updateProject({{ form.instance.id }})">
                                         <span class="light-grey-text">Save</span>
                                     </button>
                                 </div>
@@ -69,8 +72,8 @@
                                 {% csrf_token %}
                                 {{ form }}
                                 <div class="float-right">
-                                    <button id="submit-button" class="btn mode draw blue-bg save">
-                                        <span class="light-grey-text" onclick="createProject()">Save</span>
+                                    <button id="submit-button" class="btn mode draw blue-bg commit">
+                                        <span class="light-grey-text" onclick="createProject()">Add</span>
                                     </button>
                                 </div>
                             </form>

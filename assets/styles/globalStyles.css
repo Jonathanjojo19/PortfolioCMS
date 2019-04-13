@@ -68,21 +68,6 @@ h6 { font-size: 0.8em; }
 	font-weight: bolder;
 }
 
-/* Layout */
-
-.full-height {
-    min-height: 100vh;
-}
-
-.container-large {
-    padding: 5em;
-}
-
-.container-small {
-	padding: 2em;
-	padding-top: 3em;
-}
-
 a:hover {
     text-decoration: none;
 }
@@ -158,4 +143,61 @@ a:hover {
 
 .float-right {
 	float: right;
+}
+
+/* Helper */
+
+.spacer {
+	min-height: 25px;
+	min-width: 100%;
+}
+
+.section-title {
+    margin-top: 10px;
+}
+
+/* Layout */
+
+.full-height {
+    min-height: 100vh;
+}
+
+.container-large {
+    padding: 7vw;
+}
+
+.container-small {
+	padding: 2vw;
+	padding-top: 5vh;
+}
+
+@media (max-width: 750px) {
+
+	body {
+		font-size: 0.9em;
+	}
+
+    h1 { font-size: 2.5em; }
+
+	h2 { font-size: 2em; }
+
+	h3 { font-size: 1.2em; }
+
+	h4 { font-size: 1.1em; }
+
+	h5 { font-size: 1em; }
+
+	h6 { font-size: 0.8em; }
+
+	.container-large {
+		padding: 10vw;
+	}
+	
+	.container-small {
+		padding: 10vw;
+	}
+
+	.section-title {
+        margin-top: 10px;
+    }
 }
