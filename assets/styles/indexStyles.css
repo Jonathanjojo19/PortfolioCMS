@@ -52,3 +52,9 @@
 #contact-links {
     margin-bottom: 5vh;
 }
+
+.mode {
+	position: fixed;
+	bottom: 2em;
+	left: 4em;
+}

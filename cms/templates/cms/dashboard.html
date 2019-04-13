@@ -1,12 +1,63 @@
+{% load static from staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>{{ info.title }} Dashboard</title>
+    <link rel="shortcut icon" href="{{ info.logo.url }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'styles/globalStyles.css' %}" >
+    <link rel="stylesheet" href="{% static 'styles/dashboardStyles.css' %}" >
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{% static 'scripts/updateInfo.js' %}"></script>
 </head>
 <body>
-    Dashboard!
+    <div class="container-large full-height d-flex light-bg light-grey-text">
+        <div class="dark-blue-text w-100">
+            <div class="d-flex flex-row justify-content-between">
+                <div>
+                    <h2>Dashboard</h2>
+                </div>
+                <div>
+                    <div class="btn-lg mode draw blue-bg">
+                        <a href="{% url 'portfolio:index' %}"><span class="light-grey-text spaced">home</span></a>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h3>Personal Information</h3>
+                <form class="site-form" action="" method="PUT" id="info-form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form }}
+                    <div class="float-right">
+                        <button id="submit-button" class="btn mode draw blue-bg" onclick="updateInfo()">
+                            <span class="light-grey-text">Save</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="response-modal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Update Info</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="update-status"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

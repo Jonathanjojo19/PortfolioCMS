@@ -95,7 +95,8 @@ h6 { font-size: 0.8em; }
 }
 
 .container-small {
-    padding: 2em;
+	padding: 2em;
+	padding-top: 3em;
 }
 
 a:hover {
@@ -112,9 +113,6 @@ a:hover {
 	border-radius: 0;
 	color: #000011;
 	font-size: inherit;
-	position: fixed;
-	bottom: 2em;
-	left: 4em;
 }
 
 .mode::before, .mode::after {
@@ -162,4 +160,18 @@ a:hover {
 	border-left-color: #9EA8C7;
 	-webkit-transition: width 0.25s ease-out, height 0.25s ease-out 0.25s;
 	transition: width 0.25s ease-out, height 0.25s ease-out 0.25s;
+}
+
+.spaced {
+	letter-spacing: 1px;
+}
+
+/* Positioning */
+
+.float-left {
+	float: left;
+}
+
+.float-right {
+	float: right;
 }

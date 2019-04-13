@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{% static 'styles/indexStyles.css' %}" >
 </head>
 <body>
-    <div class="full-height d-flex align-items-center">
+    <div class="full-height d-flex">
         <div class="row">
             <div class="container-large col-md-9 dark-bg light-grey-text full-height">
                 <div id="name" class="row">
@@ -65,7 +65,7 @@
         </div>
     </div>
     <div class="btn-lg mode draw blue-bg">
-        <span class="light-grey-text">edit</span>
+        <a href="{% url 'cms:dashboard' %}"><span class="light-grey-text spaced">edit</span></a>
     </div>
 </body>
 </html>

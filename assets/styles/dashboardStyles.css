@@ -1,0 +1,19 @@
+.form-control {
+    display: inline-block;
+    padding: 10px;
+    height: auto;
+}
+
+#dahsboard-head {
+    margin-bottom: 100px;
+}
+
+label {
+    margin: auto;
+    margin-top: 10px;
+}
+
+.mode {
+    position: relative;
+    margin: 0;
+}
