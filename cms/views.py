@@ -2,12 +2,11 @@ from django.shortcuts import render
 from .forms import (
     PersonalInfoForm,
     ProjectForm,
-    LogoForm
+    ProjectModelFormSet
 )
 from information.models import (
     PersonalInfo,
     Project,
-    Logo
 )
 
 from django.urls import reverse
@@ -18,12 +17,12 @@ from django.contrib import messages
 # Create your views here.
 def dashboard(request):
     personal_info = PersonalInfo.objects.all().first() 
-    logo = Logo.objects.all().first()
+    projects = Project.objects.all()
     return render(request, 'cms/dashboard.html', {
-        "logo" : logo,
+        "projects" : projects,
         "info" : personal_info,
         "info_form" : PersonalInfoForm(instance=personal_info),
-        "logo_form" : LogoForm(instance=personal_info)
+        "project_form" : ProjectModelFormSet()
     })
 
 def updateInfo(request):
@@ -42,55 +41,52 @@ def updateInfo(request):
 
         if form.is_valid():
             form.save()
-            return JsonResponse(
-                {
-                    "success" : True,
-                    "message" : "Your info have been successfuly updated",
-                }
-            )
+            return return_response(True)
         else:
-            return JsonResponse(
-                {
-                    "success" : False,
-                    "message" : form.errors,
-                }
-            )
+            return return_response(False, form.errors)
     else:
-        return JsonResponse(
-            {
-                "success" : False,
-                "message" : "Unallowed Method"
-            }
-        )
+        return_response(False, "Unallowed Method")
 
 def updateProject(request):
-    return None
+    if request.method == "PUT" or request.method == "POST" and request.is_ajax():
+        data = json.loads(request.body)
+        try:
+            current_instance = Project.objects.filter(id=data['entryNo']).first()
+            form = ProjectForm({
+                "name" : data["name"],
+                "description" : data["description"],
+                "url" : data["url"]
+            }, instance=current_instance)
+        except: 
+            form = ProjectForm({
+                "name" : data["name"],
+                "description" : data["description"],
+                "url" : data["url"]
+            })
+        if form.is_valid():
+            form.save()
+            return return_response(True)
+        else:
+            return return_response(False, form.errors)
+    elif request.method == "DELETE" and request.is_ajax():
+        try:
+            data = json.loads(request.body)
+            current_instance = Project.objects.filter(id=data['entryNo']).first()
+            current_instance.delete()
+            return return_response(True)
+        except Exception as e:
+            return return_response(False, e)
+    else:
+        return return_response(False, "Unallowed Method")
 
-# def updateLogo(request):
-#     if request.method == "POST":
-#         print(json.loads(request.body))
-#         print(request.POST, request.FILES)
-#         current_instance = Logo.objects.all().first()
-#         form = LogoForm(data=request.POST, files=request.FILES, instance=current_instance)
-#         if form.is_valid():
-#             form.save()
-#             return JsonResponse(
-#                 {
-#                     "success" : True,
-#                     "message" : "Your info have been successfuly updated",
-#                 }
-#             )
-#         else:
-#             return JsonResponse(
-#                 {
-#                     "success" : False,
-#                     "message" : form.errors,
-#                 }
-#             )
-#     else:
-#         return JsonResponse(
-#             {
-#                 "success" : False,
-#                 "message" : "Unallowed Method"
-#             }
-#         )
+def return_response(success, *argv):
+    if success:
+        return JsonResponse({
+            "success" : True,
+            "message" : "Your info have been successfuly updated. Refresh the page to update."
+        })
+    else:
+        return JsonResponse({
+            "success" : False,
+            "message" : argv[0],
+        })

@@ -33,17 +33,3 @@ class Project(models.Model):
     
     def __str__(self):
         return "[PROJECT] {}".format(self.name) 
-
-class Logo(models.Model):
-    logo = models.ImageField(blank=True, null=True)
-
-    class Meta:
-        verbose_name_plural = "Logos"
-
-    def __str__(self):
-        return "[LOGO] {}".format(self.logo)
-
-    def save(self, *args, **kwargs):
-        if Logo.objects.exists() and not self.pk:
-            raise ValidationError('There can be only one Logo instance')
-        return super(Logo, self).save(*args, **kwargs)

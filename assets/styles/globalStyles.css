@@ -6,26 +6,6 @@
         url('../fonts/AvenirLTStd-Medium.woff') format('woff');
 }
 
-body {
-    font-family: 'Avenir LT Std 35 Medium';
-	margin: 0;
-	padding: 0;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	-ms-overflow-style: none;
-	overflow-y: scroll;
-    overflow-x: hidden;
-	max-width: 100%;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none;  /* IE 10+ */
-	background-color: #000011;
-}
-
-body::-webkit-scrollbar { 
-    width: 0 !important;
-    height: 0 !important;
-}
-
 /* Text Sizes */
 
 h1 { font-size: 3.5em; }
@@ -52,6 +32,10 @@ h6 { font-size: 0.8em; }
 
 .blue-bg {
 	background-color: #172A45;
+}
+
+.red-bg {
+	background-color: #4c0000;
 }
 
 .light-blue-text {

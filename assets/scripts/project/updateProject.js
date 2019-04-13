@@ -1,22 +1,23 @@
-function updateLogo(){
+function updateProject(i){
     event.preventDefault(true);
-    let fields = document.forms["logo-form"].getElementsByTagName("input");
-    let csrf_token_entry = fields[0].value;    
-    let data = document.forms["logo-form"]["id_logo"].files[0];
+    let fields = document.forms["project-form-" + i].getElementsByTagName("input");
+    let textarea = document.forms["project-form-" + i].getElementsByTagName("textarea")
+    let csrf_token_entry = fields[0].value;
+    let data = JSON.stringify({
+        entryNo : i,
+        name : fields[1].value,
+        description : textarea[0].value,
+        url : fields[2].value,
+    });
     $.ajax({
-        url: 'update-logo/',
-        type: 'POST',
-        cache: false,
-        processData: false, 
-        contentType: false,
-        data: JSON.stringify({
-            logo: data,
-        }),
+        url: 'update-project/',
+        type: 'PUT',
+        dataType: 'json',
+        data: data,
         beforeSend: function(request) {
             request.setRequestHeader('X-CSRFToken', csrf_token_entry);
         },
         success: function(result) {
-            console.log(result);
             if (result.success){
                 document.getElementById("update-status").innerText = result.message;
             } else {

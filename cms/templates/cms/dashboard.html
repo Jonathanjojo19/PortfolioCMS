@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ info.title }} Dashboard</title>
-    <link rel="shortcut icon" href="{{ logo.logo.url }}">
+    <link rel="shortcut icon" href="{% static 'icons/favicon.ico' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'styles/globalStyles.css' %}" >
     <link rel="stylesheet" href="{% static 'styles/dashboardStyles.css' %}" >
@@ -15,8 +15,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="{% static 'scripts/updateInfo.js' %}"></script>
-    <script type="text/javascript" src="{% static 'scripts/updateLogo.js' %}"></script>
+    <script type="text/javascript" src="{% static 'scripts/info/updateInfo.js' %}"></script>
+    <script type="text/javascript" src="{% static 'scripts/project/createProject.js' %}"></script>
+    <script type="text/javascript" src="{% static 'scripts/project/updateProject.js' %}"></script>
+    <script type="text/javascript" src="{% static 'scripts/project/deleteProject.js' %}"></script>
 </head>
 <body>
     <div class="container-large full-height d-flex light-bg light-grey-text">
@@ -33,28 +35,49 @@
             </div>
             <div>
                 <h3>Personal Information</h3>
-                <form class="site-form" action="" method="PUT" id="info-form" enctype="multipart/form-data">
+                <form class="site-form" action="" method="PUT" id="info-form">
                     {% csrf_token %}
                     {{ info_form }}
                     <div class="float-right">
-                        <button id="submit-button" class="btn mode draw blue-bg" onclick="updateInfo()">
+                        <button id="submit-button" class="btn mode draw blue-bg save" onclick="updateInfo()">
                             <span class="light-grey-text">Save</span>
                         </button>
                     </div>
                 </form>
             </div>
-            <!-- <div>
-                <h3>Site Logo</h3>
-                <form class="site-form" action="" method="POST" id="logo-form" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {{ logo_form }}
-                    <div class="float-right">
-                        <button id="submit-button" class="btn mode draw blue-bg" onclick="updateLogo()">
-                            <span class="light-grey-text">Save</span>
-                        </button>
-                    </div>
-                </form>
-            </div> -->
+            <div>
+                <h3>Projects</h3>
+                {% for form in project_form %}
+                    {% if not forloop.last %}
+                        <div id="project-{{ form.instance.id }}">
+                            <form class="site-form" action="" method="PUT" id="project-form-{{ form.instance.id }}">
+                                {% csrf_token %}
+                                {{ form }}
+                                <div class="float-right">
+                                    <button id="submit-button" class="btn mode draw red-bg save" onclick="deleteProject({{ form.instance.id }})">
+                                        <span class="light-grey-text">Delete</span>
+                                    </button>
+                                    <button id="submit-button" class="btn mode draw blue-bg save" onclick="updateProject({{ form.instance.id }})">
+                                        <span class="light-grey-text">Save</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    {% else %}
+                        <div>
+                            <form class="site-form" action="" method="PUT" id="project-form-new">
+                                {% csrf_token %}
+                                {{ form }}
+                                <div class="float-right">
+                                    <button id="submit-button" class="btn mode draw blue-bg save" onclick="createProject()">
+                                            <span class="light-grey-text">Save</span>
+                                        </button>
+                                    </div>
+                            </form>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
         </div>
     </div>
     <div class="modal fade" id="response-modal" role="dialog">
@@ -66,8 +89,10 @@
                 <div class="modal-body">
                     <p id="update-status"></p>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <div class="modal-footer light-grey-text">
+                    <a href="{% url 'portfolio:index' %}" class="btn btn-default light-grey-text blue-bg">Home</a>
+                    <a href="{% url 'cms:dashboard' %}" class="btn btn-default light-grey-text dark-bg">Refresh</a>
+                    <a class="btn btn-secondary red-bg" data-dismiss="modal">Close</a>
                 </div>
             </div>
         </div>
