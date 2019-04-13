@@ -23,7 +23,7 @@
 <body>
     <div class="container-large full-height d-flex light-bg light-grey-text">
         <div class="dark-blue-text w-100">
-            <div class="d-flex flex-row justify-content-between">
+            <div id="information" class="d-flex flex-row justify-content-between">
                 <div>
                     <h2>Dashboard</h2>
                 </div>
@@ -39,13 +39,13 @@
                     {% csrf_token %}
                     {{ info_form }}
                     <div class="float-right">
-                        <button id="submit-button" class="btn mode draw blue-bg save" onclick="updateInfo()">
+                        <button id="submit-button" class="btn mode draw blue-bg save" onclick="update_info()">
                             <span class="light-grey-text">Save</span>
                         </button>
                     </div>
                 </form>
             </div>
-            <div>
+            <div id="projects">
                 <h3>Projects</h3>
                 {% for form in project_form %}
                     {% if not forloop.last %}
@@ -65,14 +65,14 @@
                         </div>
                     {% else %}
                         <div>
-                            <form class="site-form" action="" method="PUT" id="project-form-new">
+                            <form class="site-form" action="" method="POST" id="project-form-new">
                                 {% csrf_token %}
                                 {{ form }}
                                 <div class="float-right">
-                                    <button id="submit-button" class="btn mode draw blue-bg save" onclick="createProject()">
-                                            <span class="light-grey-text">Save</span>
-                                        </button>
-                                    </div>
+                                    <button id="submit-button" class="btn mode draw blue-bg save">
+                                        <span class="light-grey-text" onclick="createProject()">Save</span>
+                                    </button>
+                                </div>
                             </form>
                         </div>
                     {% endif %}

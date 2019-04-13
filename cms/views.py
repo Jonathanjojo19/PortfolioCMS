@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import (
     PersonalInfoForm,
     ProjectForm,
@@ -14,7 +14,6 @@ from django.http import JsonResponse
 import json
 from django.contrib import messages 
 
-# Create your views here.
 def dashboard(request):
     personal_info = PersonalInfo.objects.all().first() 
     projects = Project.objects.all()
@@ -25,7 +24,7 @@ def dashboard(request):
         "project_form" : ProjectModelFormSet()
     })
 
-def updateInfo(request):
+def update_info(request):
     if request.method == "PUT" and request.is_ajax():
         current_instance = PersonalInfo.objects.all().first()
         data = json.loads(request.body)
@@ -47,8 +46,24 @@ def updateInfo(request):
     else:
         return_response(False, "Unallowed Method")
 
-def updateProject(request):
-    if request.method == "PUT" or request.method == "POST" and request.is_ajax():
+def update_project(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        form = ProjectForm({
+            "name" : data["name"],
+            "description" : data["description"],
+            "url" : data["url"]
+        })
+        if form.is_valid():
+            form.save()
+            return JsonResponse({
+                "success" : True,
+                "message" : "Your info have been successfuly updated. Refresh the page to update.",
+                "url" : reverse('cms:dashboard')
+            })
+        else:
+            return return_response(False, form.errors)
+    elif request.method == "PUT" and request.is_ajax():
         data = json.loads(request.body)
         try:
             current_instance = Project.objects.filter(id=data['entryNo']).first()

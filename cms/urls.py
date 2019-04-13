@@ -5,6 +5,6 @@ app_name = "cms"
 
 urlpatterns = [
     path('', views.dashboard, name="dashboard"),
-    path('update-info/', views.updateInfo, name="updateInfo"),
-    path('update-project/', views.updateProject, name="updateProject"),
+    path('update-info/', views.update_info, name="update_info"),
+    path('update-project/', views.update_project, name="update_project"),
 ]

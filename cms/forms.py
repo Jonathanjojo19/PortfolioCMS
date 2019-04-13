@@ -100,7 +100,7 @@ class ProjectForm(forms.ModelForm):
             "url" : forms.URLInput(
                 attrs = {
                     "class" : "form-control",
-                    "required" : True,
+                    "required" : False,
                     "placeholder" : "Your Project URL"
                 }
             ),
@@ -135,7 +135,7 @@ ProjectModelFormSet = modelformset_factory(
         "url" : forms.URLInput(
             attrs = {
                 "class" : "form-control",
-                "required" : True,
+                "required" : False,
                 "placeholder" : "Your Project URL"
             }
         ),

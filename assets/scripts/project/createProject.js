@@ -8,6 +8,7 @@ function createProject(){
         description : textarea[0].value,
         url : fields[2].value,
     });
+    console.log(data);
     $.ajax({
         url: 'update-project/',
         type: 'POST',
@@ -18,17 +19,18 @@ function createProject(){
         },
         success: function(result) {
             if (result.success){
-                document.getElementById("update-status").innerText = result.message;
+                location.reload(true);
             } else {
                 let errors = "";
                 for (var key in result.message) {
                     result.message[key].forEach((er) => {
-                        errors += er + "\n";
+                        key = key.charAt(0).toUpperCase() + key.slice(1);
+                        errors += key + " : " + er + "\n";
                     });
                 }
                 document.getElementById("update-status").innerText = errors;
+                $('#response-modal').modal('show');
             }
-            $('#response-modal').modal('show');
         }
     });
 }
