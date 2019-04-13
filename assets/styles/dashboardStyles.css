@@ -23,6 +23,11 @@ label {
 .commit {
     margin-bottom: 0;
     margin-left: 5px;
+    color: #e6e6e6;
+}
+
+.commit:hover {
+    color: #e6e6e6;
 }
 
 /* Addition */
