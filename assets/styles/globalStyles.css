@@ -165,20 +165,33 @@ a:hover {
 /* Layout */
 
 .full-height {
-    min-height: 100vh;
+    min-height: 99.98vh;
 }
 
 .container-large {
-    padding: 7vw;
+	position: relative;
+	padding: 7vw;
 }
 
 .container-small {
+	position: relative;
 	padding: 2vw;
 	padding-top: 10vh;
 	padding-right: 4vw;	
 }
 
+.flex-col {
+	flex-direction: column;
+}
+
+.flex-row {
+	flex-direction: row;
+}
+
 @media (max-width: 992px) {
+	.full-height {
+		min-height: none;
+	}
 
 	body {
 		font-size: 0.9em;

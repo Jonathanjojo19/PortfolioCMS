@@ -32,13 +32,13 @@ body::-webkit-scrollbar {
 
 .line-wrapped:before,
 .line-wrapped:after {
-	background-color: #3E4456;
+	background-color: #868ea8;
 	content: "";
 	display: inline-block;
 	height: 1px;
 	vertical-align: middle;
-	width: 40%;
-	transform: scale(0.25, 1);
+	width: 30%;
+	transform: scale(0.5, 1);
 }
 
 .line-wrapped:before {
@@ -69,7 +69,7 @@ body::-webkit-scrollbar {
 }
 
 #contact-links {
-    margin-bottom: 5vh;
+	margin-bottom: 2em;
 }
 
 .mode {

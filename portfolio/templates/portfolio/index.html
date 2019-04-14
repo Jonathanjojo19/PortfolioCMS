@@ -15,35 +15,39 @@
 <body>
     <div class="full-height d-flex">
         <div class="row">
-            <div class="container-large col-lg-9 dark-bg light-grey-text full-height">
-                <div>
-                    <h1>{{ info.name }}</h1>
+            <div class="container-large col-lg-9 dark-bg light-grey-text full-height d-flex flex-col justify-content-between">
+                <div id="info-container">
+                    <div>
+                        <h1 class="light-blue-text">{{ info.name }}</h1>
+                    </div>
+                    <div id="description">
+                        <h3>{{ info.description }}</h3>
+                    </div>
                 </div>
-                <div id="description">
-                    <h3>{{ info.description }}</h3>
-                </div>
-                <div id="contact-links" class="line-wrapped">
-                    <a href="{{ info.linkedin }}">
-                        <img
-                            src="{% static 'icons/linkedin.svg' %}"
-                            alt="LinkedIn"
-                            class="link-icon"
-                        />
-                    </a>
-                    <a href="mailto: {{ info.email }}">
-                        <img
-                            src="{% static 'icons/email.svg' %}"
-                            alt="Email"
-                            class="link-icon"
-                        />
-                    </a>
-                    <a href="tel:{{ info.phone_number }}">
-                        <img
-                            src="{% static 'icons/phone.svg' %}"
-                            alt="Phone"
-                            class="link-icon"
-                        />
-                    </a>
+                <div id="contact-container">
+                    <div id="contact-links" class="line-wrapped">
+                        <a href="{{ info.linkedin }}">
+                            <img
+                                src="{% static 'icons/linkedin.svg' %}"
+                                alt="LinkedIn"
+                                class="link-icon"
+                            />
+                        </a>
+                        <a href="mailto: {{ info.email }}">
+                            <img
+                                src="{% static 'icons/email.svg' %}"
+                                alt="Email"
+                                class="link-icon"
+                            />
+                        </a>
+                        <a href="tel:{{ info.phone_number }}">
+                            <img
+                                src="{% static 'icons/phone.svg' %}"
+                                alt="Phone"
+                                class="link-icon"
+                            />
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="container-small col-lg-3 light-bg full-height">
@@ -52,7 +56,11 @@
                 </div>
                 {% for project in projects %}
                     <div>
-                        <a href="{{ project.url }}" class="medium-blue-text"><h4>{{ project.name }}</h4></a>
+                        {% if project.url %}
+                            <a href="{{ project.url }}" class="medium-blue-text"><h4>{{ project.name }}</h4></a>
+                        {% else %}
+                            <a href="#" class="medium-blue-text"><h4>{{ project.name }}</h4></a>
+                        {% endif %}
                         <h6 class="dark-grey-text">{{ project.description }}</h6>
                     </div>
                 {% endfor %}
