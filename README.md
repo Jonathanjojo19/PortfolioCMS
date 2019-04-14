@@ -12,6 +12,7 @@ The final product of this project can be accessed: https://simple-intro-site.her
 
 ### Prerequisites
 
+* Git
 * Browser
 * Python3
 * Pip3
@@ -31,7 +32,7 @@ If you wish to download and use this project on your local environment, follow s
     ```
 * Get into the project directory
     ```bash
-    $ cd PortfolioCMS
+    $ cd PortfolioCMS/
     ```
 * Install all the requirements in the requirements.txt
     ```bash

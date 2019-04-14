@@ -40,7 +40,7 @@ label {
     position: relative;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 992px) {
     
     h1 { font-size: 2em; }
 

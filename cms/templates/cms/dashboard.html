@@ -68,6 +68,7 @@
                         </div>
                     {% else %}
                         <div>
+                            <h3 class="medium-blue-text">Add New Project</h3>
                             <form class="site-form" action="" method="POST" id="project-form-new">
                                 {% csrf_token %}
                                 {{ form }}
@@ -87,14 +88,13 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Update Status</h4>
+                    <h4 class="modal-title medium-blue-text">Update Status</h4>
                 </div>
                 <div class="modal-body">
                     <p id="update-status"></p>
                 </div>
                 <div class="modal-footer light-grey-text">
                     <a href="{% url 'portfolio:index' %}" class="btn btn-default light-grey-text blue-bg commit">Home</a>
-                    <a href="{% url 'cms:dashboard' %}" class="btn btn-default light-grey-text dark-bg commit">Refresh</a>
                     <a class="btn btn-default red-bg commit" data-dismiss="modal">Close</a>
                 </div>
             </div>

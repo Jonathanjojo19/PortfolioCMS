@@ -58,7 +58,7 @@ def update_project(request):
             form.save()
             return JsonResponse({
                 "success" : True,
-                "message" : "Your info have been successfuly updated. Refresh the page to update.",
+                "message" : "Your info have been successfuly updated.",
                 "url" : reverse('cms:dashboard')
             })
         else:
@@ -98,7 +98,7 @@ def return_response(success, *argv):
     if success:
         return JsonResponse({
             "success" : True,
-            "message" : "Your info have been successfuly updated. Refresh the page to update."
+            "message" : "Your info have been successfuly updated."
         })
     else:
         return JsonResponse({
