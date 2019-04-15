@@ -20,6 +20,7 @@
     <script type="text/javascript" src="{% static 'scripts/project/createProject.js' %}"></script>
     <script type="text/javascript" src="{% static 'scripts/project/updateProject.js' %}"></script>
     <script type="text/javascript" src="{% static 'scripts/project/deleteProject.js' %}"></script>
+    <script type="text/javascript" src="{% static 'scripts/nav/exitDashboard.js' %}"></script>
 </head>
 <body>
     <div class="container-large full-height d-flex light-bg light-grey-text">
@@ -29,16 +30,8 @@
                     <h1>Dashboard</h1>
                 </div>
                 <div>
-                    <li>
-                        <form class="logout-link" action="{% url 'authentication:logout' %}" method="POST">
-                            {% csrf_token %}
-                            <button type="submit">Log Out</button>
-                        </form>
-                    </li>
-                </div>
-                <div>
-                    <div class="btn-lg mode draw blue-bg">
-                        <a href="{% url 'portfolio:index' %}"><span class="light-grey-text spaced">home</span></a>
+                    <div class="btn-lg mode draw blue-bg" onclick="exitDashboard()">
+                        <span class="light-grey-text spaced">home</span>
                     </div>
                 </div>
             </div>
@@ -105,13 +98,20 @@
                 </div>
                 <div class="modal-footer light-grey-text">
                     <a href="{% url 'portfolio:index' %}" class="btn btn-default light-grey-text blue-bg commit">Later</a>
-                    <a href="{% url 'portfolio:index' %}" class="btn btn-default light-grey-text dark-bg commit">Log out</a>
+                    <div>
+                        <form class="logout-form" action="{% url 'authentication:logout' %}" method="POST">
+                            {% csrf_token %}
+                            <button id="submit-button" class="btn btn-default dark-bg commit submit" type="submit">
+                                    <span class="light-grey-text">Log Out</span>
+                                </button>
+                        </form>
+                    </div>
                     <a class="btn btn-default red-bg commit" data-dismiss="modal">Cancel</a>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <div class="modal fade" id="response-modal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">

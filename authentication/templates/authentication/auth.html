@@ -26,8 +26,8 @@
                         <div>
                             <h2 class="medium-blue-text">Log In</h2>
                         </div>
-                        <div class="btn-lg mode draw blue-bg">
-                            <a href="{% url 'portfolio:index' %}"><span class="light-grey-text spaced">back</span></a>
+                        <div>
+                            <a class="btn-lg mode draw blue-bg" href="{% url 'portfolio:index' %}"><span class="light-grey-text spaced">back</span></a>
                         </div>
                     </div>
                     <div>
@@ -44,9 +44,16 @@
                             {% if request.GET.next %}
                                 <input type="hidden" name="next" value="{{ request.GET.next }}">
                             {% endif %}
-                            <button id="submit-button" class="btn mode draw dark-bg commit" type="submit">
-                                <span class="light-grey-text">Log In</span>
-                            </button>
+                            <div class="d-flex justify-content-between">
+                                <button id="submit-button" class="btn mode draw dark-bg commit submit" type="submit">
+                                    <span class="light-grey-text">Log In</span>
+                                </button>
+                                <div id="auth-feedback" class="d-flex align-items-center">
+                                    <div>
+                                        {{ feedback }}
+                                    </div>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
