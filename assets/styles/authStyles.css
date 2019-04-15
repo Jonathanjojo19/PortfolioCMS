@@ -1,0 +1,6 @@
+.site-form input {
+    display: inline-block;
+    padding: 10px;
+    height: auto;
+    min-width: 25vw;
+}

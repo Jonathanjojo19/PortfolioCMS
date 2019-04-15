@@ -28,6 +28,14 @@
                     <h1>Dashboard</h1>
                 </div>
                 <div>
+                    <li>
+                        <form class="logout-link" action="{% url 'authentication:logout' %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit">Log Out</button>
+                        </form>
+                    </li>
+                </div>
+                <div>
                     <div class="btn-lg mode draw blue-bg">
                         <a href="{% url 'portfolio:index' %}"><span class="light-grey-text spaced">home</span></a>
                     </div>

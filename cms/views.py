@@ -9,20 +9,25 @@ from information.models import (
     Project,
 )
 
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.http import JsonResponse
-import json
 from django.contrib import messages 
+import json
 
+@login_required(login_url="/auth/login")
 def dashboard(request):
     personal_info = PersonalInfo.objects.all().first() 
     projects = Project.objects.all()
-    return render(request, 'cms/dashboard.html', {
-        "projects" : projects,
-        "info" : personal_info,
-        "info_form" : PersonalInfoForm(instance=personal_info),
-        "project_form" : ProjectModelFormSet()
-    })
+    if request.user.is_superuser :
+        return render(request, 'cms/dashboard.html', {
+            "projects" : projects,
+            "info" : personal_info,
+            "info_form" : PersonalInfoForm(instance=personal_info),
+            "project_form" : ProjectModelFormSet()
+        })
+    else:
+        return render('authentication/auth.html' , {feedback:"NOT ALLOWED"})
 
 def update_info(request):
     if request.method == "PUT" and request.is_ajax():
