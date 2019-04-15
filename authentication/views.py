@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout
 
 def login_view(request):
@@ -13,16 +13,13 @@ def login_view(request):
                 if "next" in request.POST:
                     return redirect(request.POST.get("next"))
                 return redirect("portfolio:index")
-        return render(request, "authentication/auth.html", {
-            "form" : form,
-            "feedback" : "Sorry, you are not authorized to edit this page.."
-        })
-    else:
-        form = AuthenticationForm()
+            else:
+                logout(request)
+        return redirect(request.POST.get("next"))
     return render(request, "authentication/auth.html", {
-        "form" : form
+        "form" : AuthenticationForm(),
+        "feedback" : ""
     })
-        
 
 def logout_view(request):
     if request.method == "POST":
