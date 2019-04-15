@@ -9,7 +9,7 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            if request.user.is_superuser:
+            if request.user.is_superuser or request.user.is_staff:
                 if "next" in request.POST:
                     return redirect(request.POST.get("next"))
                 return redirect("portfolio:index")

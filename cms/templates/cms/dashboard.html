@@ -97,7 +97,7 @@
                     <p id="exit-status">Do you wish to log out?</p>
                 </div>
                 <div class="modal-footer light-grey-text">
-                    <a href="{% url 'portfolio:index' %}" class="btn btn-default light-grey-text blue-bg commit">Later</a>
+                    <a href="{% url 'portfolio:index' %}" class="btn btn-default light-grey-text blue-bg commit">No, Display my Page</a>
                     <div>
                         <form class="logout-form" action="{% url 'authentication:logout' %}" method="POST">
                             {% csrf_token %}
