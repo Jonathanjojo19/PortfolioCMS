@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'af=f#qfld6cmno2ru1z&sy=kh1q$n99q66$qukdim&u%@j$@0!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost',
@@ -107,6 +107,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Session
+
+SESSION_SAVE_EVERY_REQUEST = True
+SESSION_COOKIE_NAME = 'session_cookie'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/

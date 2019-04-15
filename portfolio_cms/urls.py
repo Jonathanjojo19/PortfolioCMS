@@ -19,6 +19,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 from . import views
 
+handler404 = views.page_not_found_view
+handler500 = views.server_error_view
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('authentication.urls')),
@@ -27,6 +30,3 @@ urlpatterns = [
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-handler404 = views.page_not_available_view
-handler500 = views.page_not_available_view
