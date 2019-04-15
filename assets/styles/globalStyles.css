@@ -78,8 +78,11 @@ a:hover {
     text-decoration: none;
 }
 
-/* Mode button */
+/* Buttons */
 
+.submit {
+	border: 0;
+}
 
 .mode {
 	display: inline-block;
@@ -88,6 +91,7 @@ a:hover {
 	border-radius: 0;
 	color: #000011;
 	font-size: inherit;
+	cursor: pointer;
 }
 
 .mode::before, .mode::after {
@@ -138,7 +142,13 @@ a:hover {
 }
 
 .spaced {
-	letter-spacing: 1px;
+	letter-spacing: 2px;
+}
+
+.dropup .dropdown-toggle:hover::after {
+	border: 2px solid transparent;
+	border-bottom-color: #9EA8C7;
+	border-left-color: #9EA8C7;
 }
 
 /* Positioning */

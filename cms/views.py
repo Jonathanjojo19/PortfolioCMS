@@ -19,15 +19,12 @@ import json
 def dashboard(request):
     personal_info = PersonalInfo.objects.all().first() 
     projects = Project.objects.all()
-    if request.user.is_superuser :
-        return render(request, 'cms/dashboard.html', {
-            "projects" : projects,
-            "info" : personal_info,
-            "info_form" : PersonalInfoForm(instance=personal_info),
-            "project_form" : ProjectModelFormSet()
-        })
-    else:
-        return render('authentication/auth.html' , {feedback:"NOT ALLOWED"})
+    return render(request, 'cms/dashboard.html', {
+        "projects" : projects,
+        "info" : personal_info,
+        "info_form" : PersonalInfoForm(instance=personal_info),
+        "project_form" : ProjectModelFormSet()
+    })
 
 def update_info(request):
     if request.method == "PUT" and request.is_ajax():

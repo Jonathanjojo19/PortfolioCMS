@@ -2,5 +2,10 @@
     display: inline-block;
     padding: 10px;
     height: auto;
-    min-width: 25vw;
+    min-width: 50vw;
+}
+
+#auth-feedback {
+    color: #4c0000;
+    margin-left: 4px;
 }
