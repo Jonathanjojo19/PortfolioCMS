@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'styles/globalStyles.css' %}" >
     <link rel="stylesheet" href="{% static 'styles/dashboardStyles.css' %}" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -92,6 +93,25 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="exit-modal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title medium-blue-text">Back to Home Page</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="exit-status">Do you wish to log out?</p>
+                </div>
+                <div class="modal-footer light-grey-text">
+                    <a href="{% url 'portfolio:index' %}" class="btn btn-default light-grey-text blue-bg commit">Later</a>
+                    <a href="{% url 'portfolio:index' %}" class="btn btn-default light-grey-text dark-bg commit">Log out</a>
+                    <a class="btn btn-default red-bg commit" data-dismiss="modal">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <div class="modal fade" id="response-modal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">

@@ -10,7 +10,7 @@ def login_view(request):
             login(request, user)
             if "next" in request.POST:
                 return redirect(request.POST.get("next"))
-            return redirect('cms:dashboard')
+            return redirect('portfolio:index')
     else:
         form = AuthenticationForm()
     return render(request, 'authentication/auth.html', {'form':form})
@@ -19,3 +19,4 @@ def logout_view(request):
     if request.method == "POST":
         logout(request)
         return redirect('portfolio:index')
+    return redirect(request, 'portfolio:index')

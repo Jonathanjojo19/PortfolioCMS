@@ -18,25 +18,43 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="container-large full-height d-flex align-items-start light-bg">
-        <div class="dark-blue-text w-100">
-            <h1 class="medium-blue-text">Log In to Edit Your Page</h1>
-            <div>
-                <form class="site-form" action="{% url 'authentication:login' %}" method="POST">
-                    {% csrf_token %}
-                    {% for field in form.visible_fields %}
+    <div class="full-height d-flex">
+        <div class="row w-100">
+            <div class="container-large col-md-8 full-height d-flex align-items-start light-bg">
+                <div class="dark-blue-text">
+                    <div class="d-flex flex-row justify-content-between">
                         <div>
-                            {{ field.label_tag }}
-                            <div>
-                                {{ field }}
-                            </div>
+                            <h2 class="medium-blue-text">Log In</h2>
                         </div>
-                    {% endfor %}
-                    {% if request.GET.next %}
-                        <input type="hidden" name="next" value="{{ request.GET.next }}">
-                    {% endif %}
-                    <input type="submit" value="Log In">
-                </form>
+                        <div class="btn-lg mode draw blue-bg">
+                            <a href="{% url 'portfolio:index' %}"><span class="light-grey-text spaced">back</span></a>
+                        </div>
+                    </div>
+                    <div>
+                        <form class="site-form" action="{% url 'authentication:login' %}" method="POST">
+                            {% csrf_token %}
+                            {% for field in form.visible_fields %}
+                                <div>
+                                    {{ field.label_tag }}
+                                    <div>
+                                        {{ field }}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            {% if request.GET.next %}
+                                <input type="hidden" name="next" value="{{ request.GET.next }}">
+                            {% endif %}
+                            <button id="submit-button" class="btn mode draw dark-bg commit" type="submit">
+                                <span class="light-grey-text">Log In</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="container-large col-md-4 dark-bg">
+                <h2 class="light-grey-text">
+                    Can't wait to see new things you will bring to this page..
+                </h2>
             </div>
         </div>
     </div>
